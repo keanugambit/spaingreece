@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greece — A 7-Day Trip</title>
+<meta name="description" content="A traveler's guide to a 7-day trip through Greece: Athens, Santorini, and Mykonos. Itinerary, famous sights, food, and restaurants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <span class="nav__dot"></span> Greece · 7 Days
+  </a>
+  <nav class="nav__links">
+    <a href="#itinerary" data-scroll>Itinerary</a>
+    <a href="#places" data-scroll>Places</a>
+    <a href="#sights" data-scroll>Sights</a>
+    <a href="#food" data-scroll>Food</a>
+    <a href="#tips" data-scroll>Tips</a>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero__bg"></div>
+  <div class="hero__inner">
+    <p class="hero__eyebrow">A 7-Day Trip · Planned June 2026</p>
+    <h1 class="hero__title">Greece</h1>
+    <p class="hero__sub">Ancient history meets bright-blue islands. Start in Athens, then sail to Santorini for sunsets and Mykonos for beaches — with the sights, food, and restaurants worth the trip.</p>
+    <div class="hero__cta">
+      <a href="#itinerary" class="btn" data-scroll>See the itinerary</a>
+      <a href="#food" class="btn btn--ghost" data-scroll>What to eat</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Scroll ↓</div>
+</section>
+
+<main>
+<!-- ===================== INTRO ===================== -->
+<section class="trip" id="intro">
+  <div class="trip__intro container">
+    <span class="trip__flag">The Trip</span>
+    <h2 class="trip__name">Athens to the islands</h2>
+    <p class="trip__lede">Greece mixes ancient history with bright-blue islands. This 7-day trip starts in <strong>Athens</strong> — the old capital with its ancient ruins — then sails to two famous islands: <strong>Santorini</strong> for sunsets and <strong>Mykonos</strong> for beaches and fun. Ferries and short flights link them.</p>
+    <p class="trip__note">Book island hotels and ferries early for summer. Sunset dinners in Santorini can sell out weeks ahead.</p>
+  </div>
+</section>
+
+<!-- ===================== ITINERARY ===================== -->
+<section class="container" id="itinerary">
+  <h3 class="sec-title">The 7-Day Itinerary</h3>
+  <ol class="timeline" data-timeline></ol>
+</section>
+
+<!-- ===================== PLACES ===================== -->
+<section class="container" id="places">
+  <h3 class="sec-title">Cities &amp; Islands to Visit</h3>
+  <div class="cards" data-cities></div>
+</section>
+
+<!-- ===================== SIGHTS ===================== -->
+<section class="band" id="sights">
+  <div class="container">
+    <h3 class="sec-title sec-title--light">Famous Points of Interest</h3>
+    <div class="poi" data-poi></div>
+  </div>
+</section>
+
+<!-- ===================== FOOD ===================== -->
+<section class="container" id="food">
+  <h3 class="sec-title">Famous Foods to Try</h3>
+  <div class="food" data-food></div>
+</section>
+
+<!-- ===================== RESTAURANTS ===================== -->
+<section class="container" id="restaurants">
+  <h3 class="sec-title">Restaurants Worth a Visit</h3>
+  <p class="sec-sub">Well-loved spots in 2026. Island favorites book up fast in summer, so reserve early.</p>
+  <div class="resto" data-resto></div>
+</section>
+
+<!-- ===================== TIPS ===================== -->
+<section class="tips" id="tips">
+  <div class="container">
+    <h3 class="sec-title sec-title--light">Quick Planning Tips</h3>
+    <div class="tips__grid" data-tips></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__title">Greece — A 7-Day Trip</p>
+    <p class="footer__meta">Planned June 2026 · Eat late (9–10 pm), carry euros, and see outdoor sights early or late to beat the summer heat.</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
