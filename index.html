@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain &amp; Greece — Two 7-Day Trips</title>
+<meta name="description" content="Two 7-day travel guides: where to eat in Spain (Madrid & Barcelona) and 7 days in Greece (Athens, Santorini & Mykonos).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#E2A33B; --gold-soft:#F2C879; --cream:#FFF8EF; --ink:#2C2622; --muted:#7A6E63;
+    --red:#B5341F; --red-deep:#8E2417;
+    --blue:#1273B8; --blue-deep:#0C4E86;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Inter',-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(181,52,31,.10), transparent 60%),
+      radial-gradient(900px 500px at 85% 0%, rgba(18,115,184,.12), transparent 60%),
+      var(--cream);
+    line-height:1.55; min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px;}
+  a{text-decoration:none;color:inherit;}
+
+  .top{text-align:center;padding:74px 0 8px;}
+  .kicker{letter-spacing:.34em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B5701F;}
+  .top h1{font-size:clamp(44px,9vw,84px);line-height:1;margin:16px 0 10px;font-weight:800;}
+  .top h1 .amp{color:var(--gold);font-weight:700;}
+  .top p{max-width:600px;margin:0 auto;color:#5b5048;font-size:17px;}
+  .meta{margin-top:16px;font-size:13px;letter-spacing:.04em;color:var(--muted);}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:44px 0 30px;}
+  .trip{
+    position:relative;border-radius:22px;overflow:hidden;color:#fff;min-height:420px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    box-shadow:0 18px 50px rgba(60,30,15,.18);
+    transition:transform .25s ease, box-shadow .25s ease;
+    border:1px solid rgba(255,255,255,.35);
+  }
+  .trip:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(60,30,15,.26);}
+  .trip .bg{position:absolute;inset:0;z-index:0;}
+  .spain .bg{background:
+    radial-gradient(700px 340px at 78% -10%, rgba(226,163,59,.6), transparent 60%),
+    linear-gradient(150deg, var(--red) 0%, var(--red-deep) 55%, #5E160C 100%);}
+  .greece .bg{background:
+    radial-gradient(700px 340px at 78% -10%, rgba(226,163,59,.5), transparent 60%),
+    linear-gradient(150deg, var(--blue) 0%, var(--blue-deep) 55%, #072544 100%);}
+  .trip .bg::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,.5),transparent),
+      radial-gradient(2px 2px at 70% 24%,rgba(255,255,255,.4),transparent),
+      radial-gradient(1.5px 1.5px at 44% 66%,rgba(255,255,255,.3),transparent);opacity:.6;}
+  .trip .inner{position:relative;z-index:2;padding:30px 30px 30px;}
+  .flag{font-size:44px;line-height:1;display:block;margin-bottom:auto;}
+  .trip .tag{position:absolute;top:24px;left:30px;z-index:2;
+    letter-spacing:.28em;text-transform:uppercase;font-size:11px;font-weight:700;color:var(--gold-soft);}
+  .trip h2{font-size:40px;margin:0 0 8px;font-weight:800;}
+  .trip .desc{color:rgba(255,255,255,.92);font-size:15px;max-width:420px;margin:0 0 16px;}
+  .plist{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .plist span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);
+    padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:500;}
+  .cta{display:inline-flex;align-items:center;gap:9px;background:#fff;color:#22303B;
+    font-weight:700;font-size:14.5px;padding:12px 22px;border-radius:999px;
+    box-shadow:0 10px 24px rgba(0,0,0,.22);align-self:flex-start;}
+  .spain .cta{color:var(--red-deep);} .greece .cta{color:var(--blue-deep);}
+  .cta .arw{transition:transform .2s;} .trip:hover .cta .arw{transform:translateX(4px);}
+
+  .foot{text-align:center;color:var(--muted);font-size:13px;padding:20px 0 54px;}
+  .foot .dot{color:var(--gold);margin:0 8px;}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;gap:22px;}
+    .trip{min-height:360px;}
+    .trip h2{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="kicker">Planned June 2026</div>
+    <h1>Spain <span class="amp">&amp;</span> Greece</h1>
+    <p>Two seven-day trips, one summer. Pick a country to open its guide — where to go, what to see, and where to eat.</p>
+    <div class="meta">2 GUIDES &nbsp;•&nbsp; 14 DAYS &nbsp;•&nbsp; 5 CITIES + 2 ISLANDS</div>
+  </div>
+
+  <div class="grid">
+
+    <a class="trip spain" href="spainpage.html">
+      <div class="bg"></div>
+      <div class="tag">Part 1 · Dining Guide</div>
+      <div class="inner">
+        <span class="flag">🇪🇸</span>
+        <h2>Spain</h2>
+        <p class="desc">Where to eat across Madrid &amp; Barcelona — four hand-picked restaurants a day, each cluster in one walkable neighbourhood.</p>
+        <div class="plist"><span>🍽 4 restaurants / day</span><span>📍 Walkable clusters</span><span>👨‍👩‍👧‍👦 Family-friendly</span></div>
+        <span class="cta">Open the Spain guide <span class="arw">→</span></span>
+      </div>
+    </a>
+
+    <a class="trip greece" href="greece.html">
+      <div class="bg"></div>
+      <div class="tag">Part 2 · Travel Guide</div>
+      <div class="inner">
+        <span class="flag">🇬🇷</span>
+        <h2>Greece</h2>
+        <p class="desc">Seven days from Athens to the islands — the Acropolis, Santorini's sunset, and Mykonos beaches, with sights, food &amp; tables.</p>
+        <div class="plist"><span>🏛️ Ancient Athens</span><span>🌅 Santorini</span><span>🏖️ Mykonos</span></div>
+        <span class="cta">Open the Greece guide <span class="arw">→</span></span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="foot">
+    Book big sights early <span class="dot">•</span> eat late (9–10 pm) <span class="dot">•</span> carry some euros <span class="dot">•</span> rest through the midday heat
+  </div>
+
+</div>
+
+</body>
+</html>

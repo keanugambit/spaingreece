@@ -3,109 +3,124 @@
   var D = window.GREECE;
   if (!D) return;
 
-  var esc = function (s) {
-    return String(s).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  };
-  var $ = function (sel) { return document.querySelector(sel); };
+  // ---- helpers (shared conventions with the Spain page) ----
+  function img(file){ return 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(file) + '?width=1100'; }
+  function maps(q){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+  function gsearch(q){ return 'https://www.google.com/search?q=' + encodeURIComponent(q); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function $(sel){ return document.querySelector(sel); }
 
-  // ---- Itinerary timeline ----
-  var tl = $("[data-timeline]");
-  if (tl) {
-    tl.innerHTML = D.itinerary.map(function (d) {
-      var rows = d.items.map(function (it) {
-        return '<div class="tl__row"><span class="tl__when">' + esc(it[0]) +
-          '</span><span class="tl__what">' + esc(it[1]) + "</span></div>";
-      }).join("");
-      return '<li class="tl__item">' +
-        '<div class="tl__marker"><span class="tl__num">' + d.day + "</span></div>" +
-        '<div class="tl__body">' +
-          '<div class="tl__head"><h4 class="tl__title">' + esc(d.title) + "</h4>" +
-          '<span class="tl__tag">' + esc(d.tag) + "</span></div>" +
-          rows +
-        "</div></li>";
+  var pinSVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6E7A83" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var webSVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>';
+  var mapSVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>';
+
+  function photo(file, alt, badge, badgeGold){
+    return '<div class="photo">' +
+      '<img src="' + img(file) + '" alt="' + esc(alt) + '" onerror="this.classList.add(\'imgfail\')">' +
+      (badge ? '<div class="badge' + (badgeGold ? ' gold' : '') + '">' + badge + '</div>' : '') +
+      '</div>';
+  }
+
+  // ---- Cover image strip ----
+  var strip = $("#coverstrip");
+  if (strip) {
+    var covers = ["Sunset_in_Oia,_Santorini.jpg", "The_Parthenon_in_Athens.jpg", "Windmills_of_Mykonos.jpg"];
+    strip.innerHTML = covers.map(function (f) {
+      return '<div class="ph" style="background-image:url(\'' + img(f) + '\')"></div>';
     }).join("");
   }
 
-  // ---- Cities ----
-  var cities = $("[data-cities]");
+  // ---- Itinerary days ----
+  var itin = $("#itinerary");
+  if (itin) {
+    itin.innerHTML = D.itinerary.map(function (d) {
+      var rows = d.items.map(function (it) {
+        return '<li><span class="when">' + esc(it[0]) + '</span><span class="what">' + esc(it[1]) + '</span></li>';
+      }).join("");
+      return '<section class="day">' +
+        '<hr class="divider">' +
+        '<div class="dayhead"><div class="daynum">' + d.num + '</div>' +
+        '<div><div class="city">' + esc(d.city) + '</div>' +
+        '<h3>Day ' + d.num + ' — ' + esc(d.title) + '</h3></div></div>' +
+        '<p class="theme">' + esc(d.theme) + '</p>' +
+        '<ul class="sched">' + rows + '</ul>' +
+        '</section>';
+    }).join("");
+  }
+
+  // ---- Cities & Islands (image cards) ----
+  var cities = $("#cities");
   if (cities) {
     cities.innerHTML = D.cities.map(function (c) {
-      return '<article class="card">' +
-        '<div class="card__emoji">' + c.emoji + "</div>" +
-        '<div class="card__head"><h4>' + esc(c.name) + "</h4>" +
-        '<span class="card__kind">' + esc(c.kind) + "</span></div>" +
-        "<p>" + esc(c.text) + "</p></article>";
+      return '<div class="card">' +
+        photo(c.img, c.name, esc(c.kind), true) +
+        '<div class="cbody"><h4>' + esc(c.name) + '</h4><p>' + esc(c.text) + '</p></div>' +
+        '</div>';
     }).join("");
   }
 
-  // ---- Points of interest ----
-  var poi = $("[data-poi]");
+  // ---- Points of interest (image cards) ----
+  var poi = $("#poi");
   if (poi) {
     poi.innerHTML = D.poi.map(function (p) {
-      return '<div class="poi__item">' +
-        '<div class="poi__top"><h4>' + esc(p.name) + "</h4>" +
-        '<span class="poi__place">' + esc(p.place) + "</span></div>" +
-        "<p>" + esc(p.text) + "</p></div>";
+      return '<div class="card">' +
+        photo(p.img, p.name, esc(p.place)) +
+        '<div class="cbody"><h4>' + esc(p.name) + '</h4><p>' + esc(p.text) + '</p></div>' +
+        '</div>';
     }).join("");
   }
 
-  // ---- Food ----
-  var food = $("[data-food]");
+  // ---- Food (image cards) ----
+  var food = $("#food");
   if (food) {
     food.innerHTML = D.food.map(function (f) {
-      return '<div class="food__item"><h4>' + esc(f.name) + "</h4>" +
-        "<p>" + esc(f.text) + "</p></div>";
+      return '<div class="card">' +
+        photo(f.img, f.name, null) +
+        '<div class="cbody"><h4>' + esc(f.name) + '</h4><p>' + esc(f.text) + '</p></div>' +
+        '</div>';
     }).join("");
   }
 
-  // ---- Restaurants ----
-  var resto = $("[data-resto]");
+  // ---- Restaurants (photo cards with Website + Map, grouped by island) ----
+  var resto = $("#restaurants");
   if (resto) {
     resto.innerHTML = D.restaurants.map(function (g) {
-      var items = g.list.map(function (r) {
-        return '<li class="resto__row"><span class="resto__name">' + esc(r.name) +
-          '</span><span class="resto__text">' + esc(r.text) + "</span></li>";
+      var cards = g.list.map(function (r, i) {
+        return '<div class="card">' +
+          '<div class="photo">' +
+            '<img src="' + img(r.img) + '" alt="' + esc(r.name) + '" onerror="this.classList.add(\'imgfail\')">' +
+            '<div class="badge">🍽 ' + esc(r.meal) + '</div>' +
+            '<div class="num">' + (i + 1) + '</div>' +
+          '</div>' +
+          '<div class="cbody">' +
+            '<h4>' + esc(r.name) + '</h4>' +
+            '<p><b style="color:#0C4E86">' + esc(r.tag) + '.</b> ' + esc(r.desc) + '</p>' +
+            '<div class="addr">' + pinSVG + '<span>' + esc(r.addr) + '</span></div>' +
+            '<div class="links">' +
+              '<a class="lk web" href="' + gsearch(r.name + ' ' + r.addr) + '" target="_blank" rel="noopener">' + webSVG + ' Website</a>' +
+              '<a class="lk map" href="' + maps(r.name + ', ' + r.addr) + '" target="_blank" rel="noopener">' + mapSVG + ' Map</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
       }).join("");
-      return '<div class="resto__group"><h4 class="resto__city">' + esc(g.city) +
-        '</h4><ul class="resto__list">' + items + "</ul></div>";
+      var extras = (g.extras || []).map(function (e) {
+        return '<span class="chip"><b>' + esc(e[0]) + '</b> · ' + esc(e[1]) + '</span>';
+      }).join("");
+      return '<section class="day">' +
+        '<hr class="divider">' +
+        '<div class="dayhead"><div class="daynum" style="font-size:22px">' + esc(g.city.slice(0, 3)) + '</div>' +
+        '<div><div class="city">Where to eat</div><h3>' + esc(g.city) + ' — ' + esc(g.area) + '</h3></div></div>' +
+        '<div class="cards tri">' + cards + '</div>' +
+        (extras ? '<div class="extra"><h4>More good tables nearby</h4><div class="chips">' + extras + '</div></div>' : '') +
+        '</section>';
     }).join("");
   }
 
-  // ---- Tips ----
-  var tips = $("[data-tips]");
+  // ---- Tips (chips) ----
+  var tips = $("#tips");
   if (tips) {
     tips.innerHTML = D.tips.map(function (t) {
-      return '<div class="tip"><span class="tip__icon">' + t.icon + "</span>" +
-        "<h4>" + esc(t.title) + "</h4><p>" + esc(t.text) + "</p></div>";
+      return '<span class="chip"><span class="ico">' + t.icon + '</span><b>' + esc(t.title) + '</b> · ' + esc(t.text) + '</span>';
     }).join("");
-  }
-
-  // ---- Smooth scroll ----
-  document.querySelectorAll("[data-scroll]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      var t = document.querySelector(a.getAttribute("href"));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth" }); }
-    });
-  });
-
-  // ---- Nav shadow on scroll ----
-  var nav = $("#nav");
-  var onScroll = function () {
-    if (nav) nav.classList.toggle("nav--solid", window.scrollY > 40);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  // ---- Reveal on scroll ----
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".tl__item, .card, .poi__item, .food__item, .resto__group, .tip, .sec-title, .sec-sub, .trip__intro")
-      .forEach(function (el) { el.classList.add("reveal"); io.observe(el); });
   }
 })();

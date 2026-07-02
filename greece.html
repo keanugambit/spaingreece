@@ -3,101 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Greece — A 7-Day Trip</title>
-<meta name="description" content="A traveler's guide to a 7-day trip through Greece: Athens, Santorini, and Mykonos. Itinerary, famous sights, food, and restaurants.">
+<title>7 Days in Greece — Athens, Santorini &amp; Mykonos</title>
+<meta name="description" content="A 7-day trip through Greece: Athens, Santorini, and Mykonos. Day-by-day itinerary, famous sights, food to try, and restaurants worth a visit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/greece.css">
 </head>
 <body>
 
-<!-- ===================== NAV ===================== -->
-<header class="nav" id="nav">
-  <a class="nav__brand" href="#top">
-    <span class="nav__dot"></span> Greece · 7 Days
-  </a>
-  <nav class="nav__links">
-    <a href="#itinerary" data-scroll>Itinerary</a>
-    <a href="#places" data-scroll>Places</a>
-    <a href="#sights" data-scroll>Sights</a>
-    <a href="#food" data-scroll>Food</a>
-    <a href="#tips" data-scroll>Tips</a>
-  </nav>
+<header class="cover">
+  <div class="wrap">
+    <a class="back" href="index.html">← Spain &amp; Greece</a>
+    <div class="kicker">Travel Guide &nbsp;•&nbsp; 7 Days &nbsp;•&nbsp; Athens · Santorini · Mykonos</div>
+    <h1>7 Days in <span>Greece</span></h1>
+    <p class="sub">Ancient history meets bright-blue islands. Start in Athens among the ruins, then sail to Santorini for sunsets and Mykonos for beaches — with the sights, food, and tables worth the trip.</p>
+    <div class="pills">
+      <div class="pill">🏛️ Ancient Athens</div>
+      <div class="pill">🌅 Santorini sunsets</div>
+      <div class="pill">🏖️ Mykonos beaches</div>
+      <div class="pill">⛴️ Islands by ferry</div>
+    </div>
+    <div class="strip" id="coverstrip"></div>
+  </div>
 </header>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="top">
-  <div class="hero__bg"></div>
-  <div class="hero__inner">
-    <p class="hero__eyebrow">A 7-Day Trip · Planned June 2026</p>
-    <h1 class="hero__title">Greece</h1>
-    <p class="hero__sub">Ancient history meets bright-blue islands. Start in Athens, then sail to Santorini for sunsets and Mykonos for beaches — with the sights, food, and restaurants worth the trip.</p>
-    <div class="hero__cta">
-      <a href="#itinerary" class="btn" data-scroll>See the itinerary</a>
-      <a href="#food" class="btn btn--ghost" data-scroll>What to eat</a>
-    </div>
-  </div>
-  <div class="hero__scroll">Scroll ↓</div>
-</section>
+<main class="wrap">
 
-<main>
-<!-- ===================== INTRO ===================== -->
-<section class="trip" id="intro">
-  <div class="trip__intro container">
-    <span class="trip__flag">The Trip</span>
-    <h2 class="trip__name">Athens to the islands</h2>
-    <p class="trip__lede">Greece mixes ancient history with bright-blue islands. This 7-day trip starts in <strong>Athens</strong> — the old capital with its ancient ruins — then sails to two famous islands: <strong>Santorini</strong> for sunsets and <strong>Mykonos</strong> for beaches and fun. Ferries and short flights link them.</p>
-    <p class="trip__note">Book island hotels and ferries early for summer. Sunset dinners in Santorini can sell out weeks ahead.</p>
-  </div>
-</section>
+  <section class="intro">
+    <h2>How to use this guide</h2>
+    <p>Greece mixes ancient history with island life. This trip gives Athens three days — the Acropolis, the museums, and a day trip to the sea or the mountains — then sails to two famous islands: <b>Santorini</b> for its cliffs and sunset, and <b>Mykonos</b> for its white town and beaches. Below you'll find the day-by-day plan, the cities and islands, the must-see sights, the food to try, and hand-picked restaurants with a <b>Website</b> and <b>Map</b> link on each.</p>
+    <p style="color:#0C4E86;font-weight:600;">Tip: book island hotels and ferries early for summer — sunset dinners in Santorini can sell out weeks ahead.</p>
+  </section>
 
-<!-- ===================== ITINERARY ===================== -->
-<section class="container" id="itinerary">
-  <h3 class="sec-title">The 7-Day Itinerary</h3>
-  <ol class="timeline" data-timeline></ol>
-</section>
+  <!-- Itinerary -->
+  <section class="sec">
+    <h2 class="sec-head">The 7-Day Itinerary</h2>
+    <div id="itinerary"></div>
+  </section>
 
-<!-- ===================== PLACES ===================== -->
-<section class="container" id="places">
-  <h3 class="sec-title">Cities &amp; Islands to Visit</h3>
-  <div class="cards" data-cities></div>
-</section>
+  <!-- Cities & Islands -->
+  <section class="sec">
+    <hr class="divider">
+    <h2 class="sec-head">Cities &amp; Islands to Visit</h2>
+    <div class="cards tri" id="cities"></div>
+  </section>
 
-<!-- ===================== SIGHTS ===================== -->
-<section class="band" id="sights">
-  <div class="container">
-    <h3 class="sec-title sec-title--light">Famous Points of Interest</h3>
-    <div class="poi" data-poi></div>
-  </div>
-</section>
+  <!-- Sights -->
+  <section class="sec">
+    <hr class="divider">
+    <h2 class="sec-head">Famous Points of Interest</h2>
+    <p class="sec-note">Booking tickets online ahead of time saves a lot of waiting in line.</p>
+    <div class="cards" id="poi"></div>
+  </section>
 
-<!-- ===================== FOOD ===================== -->
-<section class="container" id="food">
-  <h3 class="sec-title">Famous Foods to Try</h3>
-  <div class="food" data-food></div>
-</section>
+  <!-- Food -->
+  <section class="sec">
+    <hr class="divider">
+    <h2 class="sec-head">Famous Foods to Try</h2>
+    <div class="food" id="food"></div>
+  </section>
 
-<!-- ===================== RESTAURANTS ===================== -->
-<section class="container" id="restaurants">
-  <h3 class="sec-title">Restaurants Worth a Visit</h3>
-  <p class="sec-sub">Well-loved spots in 2026. Island favorites book up fast in summer, so reserve early.</p>
-  <div class="resto" data-resto></div>
-</section>
+  <!-- Restaurants -->
+  <section class="sec">
+    <hr class="divider">
+    <h2 class="sec-head">Restaurants Worth a Visit</h2>
+    <p class="sec-note">Well-loved spots in 2026. Island favorites book up fast in summer, so reserve early.</p>
+    <div id="restaurants"></div>
+  </section>
 
-<!-- ===================== TIPS ===================== -->
-<section class="tips" id="tips">
-  <div class="container">
-    <h3 class="sec-title sec-title--light">Quick Planning Tips</h3>
-    <div class="tips__grid" data-tips></div>
-  </div>
-</section>
+  <!-- Tips -->
+  <section class="sec">
+    <hr class="divider">
+    <h2 class="sec-head">Quick Planning Tips</h2>
+    <div class="extra"><div class="chips" id="tips"></div></div>
+  </section>
+
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <p class="footer__title">Greece — A 7-Day Trip</p>
-    <p class="footer__meta">Planned June 2026 · Eat late (9–10 pm), carry euros, and see outdoor sights early or late to beat the summer heat.</p>
+<footer>
+  <div class="wrap">
+    <b>7 Days in Greece.</b> Athens · Santorini · Mykonos — planned June 2026. Eat late (9–10 pm), carry some euros, and see outdoor sights early or late to beat the summer heat.<br>
+    Hours and openings change — please confirm on each website before you go. Photos are representative of each place.
   </div>
 </footer>
 
